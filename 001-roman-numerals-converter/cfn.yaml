@@ -1,0 +1,69 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description:
+  Deploys Roman Numeral Converter Flask Application
+
+Parameters:
+
+  pKeyPair:
+    Description: Key pair for the instance
+    Type: AWS::EC2::KeyPair::KeyName
+
+  pImageId:
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-6.1-x86_64
+  
+Resources:
+
+  rSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow SSH and HTTP
+      GroupName: enable-ssh-and-http
+      SecurityGroupIngress: 
+        - CidrIp: 0.0.0.0/0
+          ToPort: 80
+          FromPort: 80
+          IpProtocol: tcp
+        - CidrIp: 0.0.0.0/0
+          ToPort: 22
+          FromPort: 22
+          IpProtocol: tcp
+
+  rWebServer:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref pImageId
+      InstanceType: t2.micro
+      KeyName: !Ref pKeyPair
+      SecurityGroupIds: 
+        - !GetAtt rSecurityGroup.GroupId
+      Tags: 
+        - Key: Name
+          Value: patrick-roman-webserver
+
+      UserData:
+        Fn::Base64:
+        |
+          #!/bin/bash -x
+
+          yum update -y
+          yum install python3 -y
+          yum install pip -y
+          pip3 install flask
+
+          FOLDER="https://raw.githubusercontent.com/amagne/my-repository/main/001-roman-numerals-converter"
+
+          cd /home/ec2-user
+          wget ${FOLDER}/app.py
+          mkdir templates
+          cd templates
+          wget ${FOLDER}/templates/index.html
+          wget ${FOLDER}/templates/result.html
+          cd ..
+
+          python3 app.py
+  
+Outputs:
+  WebsiteURL:
+    Description: URL for the website
+    Value: !Join ["", ["http://", !GetAtt rWebServer.PublicDnsName]]

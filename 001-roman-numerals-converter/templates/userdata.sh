@@ -15,4 +15,4 @@ wget ${FOLDER}/templates/index.html
 wget ${FOLDER}/templates/result.html
 cd ..
 
-py
+python3 app.py
