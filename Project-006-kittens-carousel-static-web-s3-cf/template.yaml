@@ -1,0 +1,111 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+
+Description: |
+  Template to build a static s3 website, CloudFront and R53 records 
+  
+Parameters:
+  pKittensDomainName:
+    Description: Full domain name for Kittens website
+    Type: String
+    Default: kittens.patamagne.com
+  
+  pHostedZoneId:
+    Description: 
+    Type: AWS::Route53::HostedZone::Id
+    Default: 
+
+Resources:
+
+  rKittensBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref pKittensDomainName
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+      WebsiteConfiguration:
+        IndexDocument: index.html
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - BucketKeyEnabled: true
+            ServerSideEncryptionByDefault: 
+                SSEAlgorithm: AES256
+
+
+  rKittensBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref rKittensBucket
+      PolicyDocument: 
+        Id: PublicReadPolicy
+        Version: 2012-10-17
+        Statement:
+          - Sid: PublicReadForGetBucketObjects
+            Effect: Allow
+            Principal: '*'
+            Action: 's3:GetObject'
+            Resource: !Join [ '', [ !GetAtt rKittensBucket.Arn, '/*' ] ]
+
+  rCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: !Ref pKittensDomainName
+      ValidationMethod: DNS
+      DomainValidationOptions: 
+        - DomainName: !Ref pKittensDomainName
+          HostedZoneId: !Ref pHostedZoneId
+
+  rCloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Comment: Distribution for Kittens Carousel
+        Origins: 
+          - Id: KittensOrigin
+            DomainName:  !Select [2, !Split ["/", !GetAtt rKittensBucket.WebsiteURL]]
+            CustomOriginConfig: 
+              OriginProtocolPolicy: http-only
+        DefaultRootObject: index.html
+        Aliases: 
+          - !Ref pKittensDomainName
+        ViewerCertificate: 
+          AcmCertificateArn: !Ref rCertificate
+          MinimumProtocolVersion: TLSv1.2_2019
+          SslSupportMethod: sni-only
+        DefaultCacheBehavior: 
+          AllowedMethods:
+            - GET
+            - HEAD
+          CachedMethods: 
+            - GET
+            - HEAD
+          Compress: True
+          ViewerProtocolPolicy: redirect-to-https
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          TargetOriginId: KittensOrigin
+        HttpVersion: http2
+        PriceClass: PriceClass_100
+
+  rRecordSet:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      Type: A
+      Name: !Ref pKittensDomainName
+      AliasTarget:
+        DNSName: !GetAtt rCloudFrontDistribution.DomainName
+        HostedZoneId: Z2FDTNDATAQYW2
+      HostedZoneId: !Ref pHostedZoneId
+
+Outputs:
+
+  CloudFrontURL:
+    Description: CloudFront URL
+    Value: !Join [ '', [ "https://", !GetAtt rCloudFrontDistribution.DomainName ]]
+
+  KittensSiteURL:
+    Description: URL for Kittens Carousel Site
+    Value: !Join [ '', [ "https://", !Ref rRecordSet ]]
