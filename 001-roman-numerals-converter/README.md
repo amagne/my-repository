@@ -1,15 +1,13 @@
 # Project-001 : Roman Numerals Converter Application (Python Flask) deployed on AWS EC2 with Cloudformation
 
 ## Description
-The Roman Numerals Converter Application aims to convert the given number to the Roman numerals. The application is to be coded in Python and deployed as a web application with Flask on AWS Elastic Compute Cloud (EC2) Instance using AWS Cloudformation Service. 
+The Roman Numerals Converter Application aims to convert the given number to the Roman numerals. The application coded in Python and deployed as a web application with Flask on AWS Elastic Compute Cloud (EC2) Instance using AWS Cloudformation Service. 
 
 ## Problem Statement
 
 ![Project_001](Project_001_.png)
 
-- Your company has recently started on a project that aims to be one of the most used unit converters and formulas website. Roman Numerals Converter is the part of the project. So you and your colleagues have started to work on the project.
-
-- As a first step of the project, you need to write program that converts the given number (between 1 and 3999) to the roman numerals. The program should convert only from numbers to Roman numerals, not vice versa and during the conversion following notes should be taken into consideration.
+- As a first step of the project, a program that converts the given number (between 1 and 3999) to the roman numerals has to be written. The program should convert only from numbers to Roman numerals, not vice versa and during the conversion following notes should be taken into consideration.
    
 ```
 Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
@@ -56,9 +54,9 @@ Input       Output
 Ten         Warning with "Not Valid! Please enter a number between 1 and 3999, inclusively."
 ```
    
-- As a second step, after you finish the coding, you are requested to deploy your web environment using Python's Flask framework.
+- As a second step, the web environment has to be deployed using Python's Flask framework.
 
-- You need to transform your program into web application using the `index.html` and `result.html` within the `templates` folder. Note the followings for your web application.
+- The program needs to be transform into web application using the `index.html` and `result.html` within the `templates` folder. Note the followings the web application.
    
    - User should face first with `index.html` when web app started.
 
@@ -68,43 +66,42 @@ Ten         Warning with "Not Valid! Please enter a number between 1 and 3999, i
 
    - Conversion result should be displayed using the `result.html` with template formatting. 
 
-- Lastly, after transforming your code into web application, you are requested to push your program to the project repository on the Github and deploy your solution in the development environment on AWS EC2 Instance using AWS Cloudformation Service to showcase your project. In the development environment, you can configure your Cloudformation template using the followings,
+- Lastly, after transforming the code into web application,the program has to be pushed to the project repository on Github and deploy from where the solution will be deployed to the development environment on an AWS EC2 Instance using AWS Cloudformation Service to showcase the project. In the development environment, Cloudformation template is configured using the followings,
 
    - The application stack should be created with new AWS resources. 
 
-   - The application stack should take the name of your Key Pair as a parameter from the user;
-
+   - The application stack should take Key Pair name as a parameter from the user;
    
    - The application should run on Amazon Linux 2 EC2 Instance
 
    - EC2 Instance type can be configured as `t2.micro`.
 
-   - Instance launched by Cloudformation should be tagged `Web Server of StackName` 
+   - Instance launched by Cloudformation may be tagged `Web Server of StackName` 
 
    - The Web Application should be accessible via web browser and terminal from anywhere.
 
    - The Application files should be downloaded from Github repo and deployed on EC2 Instance using user data script within cloudformation template. 
 
-   - Roman Numerals Converter Application Website URL should be given as output by Cloudformation Service, after the stack created.
+   - Roman Numerals Converter Application Website URL should be given as output by Cloudformation Service, after the stack is created.
 
 ## Project Skeleton 
 
 ```
 001-roman-numerals-converter (folder)
 |
-|----readme.md         # Given to the students (Definition of the project)          
-|----cfn-template.yml  # To be delivered by students (Cloudformation template)
-|----app.py            # To be delivered by students (Python Flask Web Application)
+|----readme.md         # Definition of the project         
+|----cfn-template.yml  # Cloudformation template
+|----app.py            # Python Flask Web Application
 |----templates
-        |----index.html  # Given to the students (HTML template)
-        |----result.html # Given to the students (HTML template)
+        |----index.html  # HTML template
+        |----result.html # HTML template
 ```
 
 ## Expected Outcome
 
 ![Project 001 Snapshot](project-001-snapshot.png)
 
-### At the end of the project, following topics are to be covered;
+### Following topics are covered in this project;
 
 - Algorithm design
 
@@ -124,45 +121,25 @@ Ten         Warning with "Not Valid! Please enter a number between 1 and 3999, i
 
 - Git & Github for Version Control System
 
-### At the end of the project, students will be able to;
-
-- improve coding skills using iterables(dict), operators, for-loop, if statements and functions within Python
-
-- improve web programming skills using HTTP GET/POST methods, template formatting, importing packages within Python Flask Framework
-
-- improve bash scripting skills using `user data` section in Cloudformation to install and setup web application on EC2 Instance
-
-- configure AWS EC2 Instance and Security Groups.
-
-- configure Cloudformation template to use AWS Resources.
-
-- use AWS Cloudformation Service to launch stacks.
-
-- use git commands (push, pull, commit, add etc.) and Github as Version Control System.
-
 ## Steps to Solution
   
-- Step 1: Download or clone project definition from `clarusway-aws-workshop` repo on Github 
+- Step 1: Creating a new public repo on Github
 
-- Step 2: Create project folder for local public repo on your pc
+- Step 2: Creating project folder for local public repo on pc
 
-- Step 3: Write the Roman Numerals Converter Application in Python
+- Step 3: Writing the Roman Numerals Converter Application in Python
 
-- Step 4: Transform your application into web application using Python Flask framework
+- Step 4: Transforming the application into web application using Python Flask framework
 
-- Step 5: Prepare a cloudformation template to deploy your app on EC2 Instance
+- Step 5: Preparing a cloudformation template to deploy the app on EC2 Instance
 
-- Step 6: Push your application into your own public repo on Github
+- Step 6: Pushing the application into the public repo on Github
 
-- Step 7: Deploy your application on AWS Cloud using Cloudformation template to showcase your app within your team.
+- Step 7: Deploying the application on AWS Cloud using Cloudformation template to showcase the app.
 
 ## Notes
 
-- Use the template formatting library `jinja` within Flask framework to leverage from given templates.
-
-- Use given html templates to warn user with invalid inputs
-
-- Customize the application by hard-coding your name for the `developer_name` variable within html templates.
+- Use of the template formatting library `jinja` within Flask framework to leverage from given templates.
 
 ## Resources
 
