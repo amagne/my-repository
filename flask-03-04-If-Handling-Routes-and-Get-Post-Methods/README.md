@@ -1,12 +1,10 @@
-# Hands-on Flask-03-04: If-For structure, Handling Routes and Get-Post Methods
+# Project Flask-03-04: If-For structure, Handling Routes and Get-Post Methods
 
-Purpose of the this hands-on training is to give the students introductory knowledge of how to handle forms.
+Purpose of the this project is to practise how to handle forms.
 
 ![HTTP Methods in Flask](./http-methods-flask.png)
 
-## Learning Outcomes
-
-At the end of the this hands-on training, students will be able to;
+## Project Outcomes
 
 - build a simple web application with Flask framework.
 
@@ -39,7 +37,7 @@ At the end of the this hands-on training, students will be able to;
 
 - Part 4 - Write a Web Application with Sample Routings and Templating on GitHub Repo
 
-- Part 5 - Learn to use GET and POST HTTP Method
+- Part 5 - Use of GET and POST HTTP Method
 
 - Part 6 - Write a Sample Web Application with forms
 
@@ -61,7 +59,7 @@ The server responds to that request with an HTTP response message. Within the re
 
 - 5xx -> Server Error ---> It means the server failed to fulfill an apparently valid request.
 
-If you would learn those codes one by one. I can sent you a URL. You can also find different resources. 
+The following URL has some resources
 
 https://www.w3schools.com/tags/ref_httpmessages.asp
 
@@ -178,7 +176,7 @@ When sending request, the client can send data with using different http methods
 # Add a statement to run the Flask application which can be reached from any host on port 80.
 ```
 
-## Part 5 - Learn to use GET and POST HTTP Method
+## Part 5 - Use of GET and POST HTTP Method
 
 - Go to `Flask_GET_POST_Methods` folder under the `flask-04-handling-forms-POST-GET-Methods` folder
 
