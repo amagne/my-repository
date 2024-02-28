@@ -1,12 +1,10 @@
-# Hands-on Flask-01-02 : Creating First Flask Application - Hello World and basic usage of Jinja Templates
+# Project Flask-01-02 : Creating First Flask Application - Hello World and basic usage of Jinja Templates
 
-Purpose of the this hands-on training is to give the students quick introductory knowledge of how to create a Flask web application on local.
+Purpose of the this training project is to practice the creation of a Flask web application on local.
 
 ## Learning Outcomes
 
-At the end of the this hands-on training, students will be able to;
-
-- understand client-server software architecture.
+- Implementation of client-server architecture.
 
 - get familiar with Python Flask framework.
 
@@ -16,11 +14,11 @@ At the end of the this hands-on training, students will be able to;
 
 - use git repo to manage the application versioning.
 
-- run the web application on AWS EC2 instance using the GitHub repo as codebase (will be shown by instructor).
+- run the web application on AWS EC2 instance using the GitHub repo as codebase.
 
 ## Outline
 
-- Part 1 - Getting to know the Python Flask framework
+- Part 1 - The Python Flask framework
 
 - Part 2 - Write a Simple Hello World Web Application on GitHub Repo
 
@@ -28,7 +26,7 @@ At the end of the this hands-on training, students will be able to;
 
 - Part 4 - Install Python and Flask framework on Amazon Linux 2 EC2 Instance
 
-## Part 1 - Getting to know the Python Flask framework
+## Part 1 - The Python Flask framework
 
 ![Flask](./flask.png)
 
@@ -47,7 +45,7 @@ Followings are some of features of Flask Framework;
 
 - Many extensions are available to enhance its functionalities.
 
-## Part 1a - Install Flask
+## Part 1a - Install Flask on Amazon linux EC2 instance
 
 - yum install python3
 
