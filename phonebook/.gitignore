@@ -1,0 +1,4 @@
+## Make sure the state file and other terraform files are ignored
+
+# Exclude files that help terraform to work, that means files that contain the word "terraform" in their names
+*terraform*
