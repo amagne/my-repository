@@ -74,7 +74,11 @@ resource "aws_db_instance" "db-server" {
   engine                      = "mysql"
   engine_version              = "8.0.28"
   username                    = "admin"
-  password                    = "Oliver_1"
+
+  # For simplicity, db password is hardcoded here. 
+  # In a production level project, mechanisms must be setup to protect sensitive data
+  password                    = "Pass_1234"
+  
   monitoring_interval         = 0
   multi_az                    = false
   port                        = 3306
